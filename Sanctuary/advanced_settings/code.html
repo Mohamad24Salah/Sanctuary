@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Cairo:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-headline { font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00488d",
+                        "primary-container": "#005fb8",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "on-surface-variant": "#424752",
+                        "outline-variant": "#c2c6d4",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary": "#944a00",
+                        "tertiary": "#005429",
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans", "Cairo"],
+                        "body": ["Inter", "Cairo"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-surface-container">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95" onclick="history.back()">
+<span class="material-symbols-outlined text-primary-container">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold text-lg trans-key" data-key="settings_title">الإعدادات</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/10">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwQk0O944vVymi37UH6HmV0RN6E-7vl8lMjOWADqqQixsYXsTMHo4vW74nI6oqPyz_V7123GQx0C7ZyYPIaQ0Dben3Tamn4jd5g018b3hJGYNgJLzSwDaabLF0dEHdYi-Fnn-MY6dLCKc2Lw1OuqqnbTLpZUS6AnK8x6BW2U2Nq1bgW-ay4Pf7rb97pgb_8YYZQxP_3WM_ZSb1vnytfbfglg3fGSh6BwJ33-xh3qB1kQVRwOymilpr56eh7Xg2JXL4tWQdtyEEoyhD"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Account Management -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="account_label">الحساب</h2>
+<div class="bg-surface-container-lowest rounded-2xl p-4 space-y-4">
+<div class="flex items-center gap-4 p-2">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwQk0O944vVymi37UH6HmV0RN6E-7vl8lMjOWADqqQixsYXsTMHo4vW74nI6oqPyz_V7123GQx0C7ZyYPIaQ0Dben3Tamn4jd5g018b3hJGYNgJLzSwDaabLF0dEHdYi-Fnn-MY6dLCKc2Lw1OuqqnbTLpZUS6AnK8x6BW2U2Nq1bgW-ay4Pf7rb97pgb_8YYZQxP_3WM_ZSb1vnytfbfglg3fGSh6BwJ33-xh3qB1kQVRwOymilpr56eh7Xg2JXL4tWQdtyEEoyhD"/>
+</div>
+<div>
+<p class="font-bold text-lg">Alex Johnson</p>
+<p class="text-sm text-on-surface-variant">alex.j@example.com</p>
+</div>
+</div>
+<div class="h-px bg-surface-container mx-2"></div>
+<button id="sync-btn" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group" onclick="syncData()">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container" id="sync-icon">sync</span>
+<div class="text-left">
+<p class="font-semibold trans-key" data-key="sync_label">مزامنة البيانات</p>
+<p class="text-xs text-on-surface-variant font-arabic" id="last-sync-time">...</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Task Preferences -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="task_prefs">تفضيلات المهام</h2>
+<div class="bg-surface-container-lowest rounded-2xl p-4 space-y-4">
+<div class="flex items-center justify-between p-3">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">timer</span>
+<p class="font-semibold trans-key" data-key="def_duration">المدة الافتراضية</p>
+</div>
+<select id="default-duration-select" onchange="saveDefaultDuration(this.value)" class="bg-surface-container-low border-none rounded-lg text-sm font-medium py-1 px-3 focus:ring-primary-container">
+<option value="30">30 min</option>
+<option value="60">1 hour</option>
+<option value="120">2 hours</option>
+</select>
+</div>
+<div class="flex items-center justify-between p-3">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">archive</span>
+<p class="font-semibold trans-key" data-key="auto_archive">الأرشفة التلقائية</p>
+</div>
+<button id="auto-archive-toggle" onclick="toggleSetting('auto_archive')" class="w-10 h-5 rounded-full bg-surface-container-high relative flex items-center px-0.5 transition-colors">
+<div class="w-4 h-4 rounded-full bg-white shadow-sm transition-transform"></div>
+</button>
+</div>
+<div class="flex items-center justify-between p-3">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">mic_none</span>
+<p class="font-semibold trans-key" data-key="voice_qual">جودة الملاحظة الصوتية</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-lg text-sm font-medium py-1 px-3 focus:ring-primary-container">
+<option>Standard</option>
+<option>High (HD)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Financial Settings -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="financial_label">الإعدادات المالية</h2>
+<div class="bg-surface-container-lowest rounded-2xl p-4 space-y-6">
+<div>
+<div class="flex items-center gap-3 mb-4 px-2">
+<span class="material-symbols-outlined text-primary-container">payments</span>
+<p class="font-semibold trans-key" data-key="currency_label">العملة</p>
+</div>
+<div class="grid grid-cols-1 gap-2" id="currency-selector">
+<button onclick="selectCurrency('USD')" id="curr-USD" class="flex items-center justify-between p-3 rounded-xl border-2 border-transparent bg-surface-container-low transition-all">
+<span class="text-sm font-medium">US Dollar (USD)</span>
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</button>
+<button onclick="selectCurrency('EGP')" id="curr-EGP" class="flex items-center justify-between p-3 rounded-xl border-2 border-transparent bg-surface-container-low transition-all">
+<span class="text-sm font-medium font-['Cairo']">Egyptian Pound (EGP) - ج.م</span>
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</button>
+<button onclick="selectCurrency('SAR')" id="curr-SAR" class="flex items-center justify-between p-3 rounded-xl border-2 border-transparent bg-surface-container-low transition-all">
+<span class="text-sm font-medium font-['Cairo']">Saudi Riyal (SAR) - ر.س</span>
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-2">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">calendar_month</span>
+<p class="font-semibold trans-key" data-key="cycle_label">بداية دورة الميزانية</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-lg text-sm font-medium py-1 px-3 focus:ring-primary-container">
+<option>1st of month</option>
+<option>15th of month</option>
+<option>Custom</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Notifications & Reminders -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="notif_label">التنبيهات</h2>
+<div class="bg-surface-container-lowest rounded-2xl p-4 space-y-2">
+<div class="flex items-center justify-between p-3">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">notifications_active</span>
+<div>
+<p class="font-semibold trans-key" data-key="push_notifications_label">الإشعارات</p>
+<p class="text-xs text-on-surface-variant trans-key" data-key="alert_desc">تنبيهات على الهاتف</p>
+</div>
+</div>
+<button id="push-notifications-toggle" onclick="toggleSetting('push_notifications')" class="w-12 h-6 rounded-full bg-surface-container-high relative flex items-center px-1 transition-colors">
+<div class="w-4 h-4 rounded-full bg-white shadow-sm transition-transform"></div>
+</button>
+</div>
+<button onclick="openSoundSettings()" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">volume_up</span>
+<p class="font-semibold trans-key" data-key="sound_settings_label">إعدادات الصوت</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+<button onclick="showToast('Voice Reminders: Active | التذكيرات الصوتية مفعلة')" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">record_voice_over</span>
+<p class="font-semibold trans-key" data-key="voice_reminders_label">التذكيرات الصوتية</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Appearance & Language -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="display_label">العرض</h2>
+<div class="bg-surface-container-lowest rounded-2xl p-4 space-y-6">
+<div>
+<div class="flex items-center gap-3 mb-4 px-2">
+<span class="material-symbols-outlined text-primary-container">language</span>
+<p class="font-semibold trans-key" data-key="lang_label">اللغة</p>
+</div>
+<div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-low rounded-xl">
+<button id="lang-en" onclick="selectLanguage('en')" class="py-2 rounded-lg text-on-surface-variant font-bold transition-all">English</button>
+<button id="lang-ar" onclick="selectLanguage('ar')" class="py-2 rounded-lg text-on-surface-variant font-['Cairo'] transition-all">العربية</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-2">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">dark_mode</span>
+<p class="font-semibold trans-key" data-key="dark_mode_label">الوضع الداكن</p>
+</div>
+<button id="dark-mode-toggle" onclick="toggleDarkMode()" class="w-12 h-6 rounded-full bg-surface-container-high relative flex items-center px-1 transition-colors">
+<div class="w-4 h-4 rounded-full bg-white shadow-sm transition-transform"></div>
+</button>
+</div>
+</div>
+</section>
+<!-- Data & Security -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="data_security_label">البيانات والأمان</h2>
+<div class="bg-surface-container-lowest rounded-2xl p-2 space-y-1">
+<button class="w-full flex items-center justify-between p-4 rounded-xl hover:bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<p class="font-semibold trans-key" data-key="privacy_policy_label">سياسة الخصوصية</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">open_in_new</span>
+</button>
+<button onclick="exportData()" class="w-full flex items-center justify-between p-4 rounded-xl hover:bg-surface-container-low">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">file_export</span>
+<p class="font-semibold trans-key" data-key="export_data_label">تصدير البيانات (CSV/Excel)</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">download</span>
+</button>
+<button onclick="clearCache()" class="w-full flex items-center justify-between p-4 rounded-xl hover:bg-surface-container-low text-error">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">mop</span>
+<p class="font-semibold trans-key" data-key="clear_cache_label">مسح التخزين المؤقت</p>
+</div>
+<span id="cache-size" class="text-xs font-bold bg-error/10 px-2 py-1 rounded">24MB</span>
+</button>
+</div>
+</section>
+<!-- Support -->
+<section class="space-y-4">
+<h2 class="font-headline font-bold text-xl px-2 trans-key" data-key="support_label">الدعم</h2>
+<div class="grid grid-cols-2 gap-4">
+<button onclick="showToast('Help Center is non-functional in Demo')" class="flex flex-col items-center gap-2 p-6 rounded-2xl bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-tertiary scale-125">help</span>
+<p class="font-bold text-sm">Help Center</p>
+<p class="text-[10px] text-on-surface-variant font-['Cairo']">مركز المساعدة</p>
+</button>
+<button onclick="showToast('Opening Bug Reporter...')" class="flex flex-col items-center gap-2 p-6 rounded-2xl bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-secondary scale-125">bug_report</span>
+<p class="font-bold text-sm">Report Bug</p>
+<p class="text-[10px] text-on-surface-variant font-['Cairo']">إبلاغ عن خطأ</p>
+</button>
+</div>
+</section>
+<!-- Sound Settings Modal -->
+<div id="sound-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-6">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeSoundSettings()"></div>
+    <div class="relative bg-surface-container-lowest w-full max-w-md rounded-[2rem] p-8 shadow-2xl animate-in fade-in zoom-in duration-300">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-headline font-bold trans-key" data-key="sound_settings_label">إعدادات الصوت</h3>
+            <button onclick="closeSoundSettings()" class="material-symbols-outlined p-2 hover:bg-surface-container rounded-full">close</button>
+        </div>
+        <div class="space-y-6">
+            <!-- Volume Slider -->
+            <div class="space-y-3">
+                <div class="flex justify-between text-sm font-bold opacity-70">
+                    <span class="trans-key" data-key="volume_label">مستوى الصوت</span>
+                    <span id="volume-val">80%</span>
+                </div>
+                <input type="range" min="0" max="100" value="80" class="w-full accent-primary h-2 bg-surface-container rounded-full appearance-none cursor-pointer" oninput="updateVolume(this.value)">
+            </div>
+            <!-- Vibration -->
+            <div class="flex justify-between items-center py-2">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">vibration</span>
+                    <span class="font-bold trans-key" data-key="vibration_label">الهزاز</span>
+                </div>
+                <button id="vibrate-toggle" onclick="toggleSetting('vibration')" class="w-10 h-5 rounded-full bg-primary-container relative flex items-center px-0.5 transition-colors">
+                    <div class="w-4 h-4 rounded-full bg-white shadow-sm transition-transform translate-x-[20px]"></div>
+                </button>
+            </div>
+            <!-- Notification Tones -->
+            <div class="space-y-3">
+                <span class="text-sm font-bold opacity-70 trans-key" data-key="tone_label">نغمة التنبيه</span>
+                <div class="grid grid-cols-1 gap-2">
+                    <button onclick="selectTone('Horizon')" class="flex justify-between p-3 rounded-xl bg-primary/5 border border-primary/20">
+                        <span class="text-sm font-bold">Horizon (Default)</span>
+                        <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                    </button>
+                    <button onclick="selectTone('Zenith')" class="flex justify-between p-3 rounded-xl bg-surface-container-low">
+                        <span class="text-sm font-bold">Zenith</span>
+                        <span class="material-symbols-outlined text-outline-variant text-sm">circle</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button onclick="closeSoundSettings()" class="w-full mt-8 py-4 bg-primary text-on-primary font-bold rounded-2xl trans-key" data-key="save_btn">حفظ التغييرات</button>
+    </div>
+</div>
+
+<!-- Logout Button -->
+<button onclick="signOut()" class="w-full py-4 text-error font-bold rounded-2xl bg-error-container/20 hover:bg-error-container/40 transition-colors flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">logout</span>
+<span class="trans-key" data-key="logout_label">تسجيل الخروج</span>
+</button>
+</main>
+<!-- Toast Notification -->
+<div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-on-surface text-surface px-6 py-3 rounded-full text-sm font-medium shadow-xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300 z-[100]">
+Toast Message
+</div>
+    <style>
+        #toast.show { opacity: 1; translate: -50% 0; }
+        
+        /* Premium Deep Black Mode */
+        html.dark body { 
+            background-color: #000000; 
+            color: #f8f9fa; 
+        }
+        html.dark .bg-surface-container-lowest { 
+            background-color: #0d0d0d; 
+            border-color: #333333;
+        }
+        html.dark .bg-surface-container-low { 
+            background-color: #141414; 
+        }
+        html.dark .bg-white { 
+            background-color: #000000; 
+        }
+        html.dark .text-on-surface { color: #f8f9fa; }
+        html.dark .text-on-surface-variant { color: #bfc8ca; }
+        html.dark .border-outline-variant { border-color: #222222; }
+        
+        /* Animation for modals */
+        .animate-in { animation: animateIn 0.3s ease-out; }
+        @keyframes animateIn { from { opacity: 0; scale: 0.95; transform: translateY(10px); } to { opacity: 1; scale: 1; transform: translateY(0); } }
+    </style>
+<script>
+    const translations = {
+        'en': {
+            'settings_title': 'Settings',
+            'account_label': 'Account',
+            'sync_label': 'Sync Data',
+            'last_sync': 'Last sync: ',
+            'task_prefs': 'Task Preferences',
+            'def_duration': 'Default Duration',
+            'auto_archive': 'Auto-Archive',
+            'voice_qual': 'Voice Note Quality',
+            'financial_label': 'Financial Settings',
+            'currency_label': 'Currency',
+            'cycle_label': 'Budget Cycle Start',
+            'notif_label': 'Notifications',
+            'push_notifications_label': 'Push Notifications',
+            'alert_desc': 'Alerts on device',
+            'sound_settings_label': 'Sound Settings',
+            'voice_reminders_label': 'Voice Reminders',
+            'display_label': 'Display',
+            'lang_label': 'Language',
+            'dark_mode_label': 'Dark Mode',
+            'vibration_label': 'Vibration',
+            'volume_label': 'Volume',
+            'tone_label': 'Notification Tone',
+            'save_btn': 'Save Changes',
+            'logout_label': 'Sign Out',
+            'enabled': 'Enabled',
+            'disabled': 'Disabled'
+        },
+        'ar': {
+            'settings_title': 'الإعدادات',
+            'account_label': 'الحساب',
+            'sync_label': 'مزامنة البيانات',
+            'last_sync': 'آخر مزامنة: ',
+            'task_prefs': 'تفضيلات المهام',
+            'def_duration': 'المدة الافتراضية',
+            'auto_archive': 'الأرشفة التلقائية',
+            'voice_qual': 'جودة الملاحظة الصوتية',
+            'financial_label': 'الإعدادات المالية',
+            'currency_label': 'العملة',
+            'cycle_label': 'بداية دورة الميزانية',
+            'notif_label': 'التنبيهات',
+            'push_notifications_label': 'الإشعارات',
+            'alert_desc': 'تنبيهات على الهاتف',
+            'sound_settings_label': 'إعدادات الصوت',
+            'voice_reminders_label': 'التذكيرات الصوتية',
+            'data_security_label': 'البيانات والأمان',
+            'privacy_policy_label': 'سياسة الخصوصية',
+            'export_data_label': 'تصدير البيانات',
+            'clear_cache_label': 'مسح التخزين المؤقت',
+            'support_label': 'الدعم',
+            'display_label': 'العرض',
+            'lang_label': 'اللغة',
+            'dark_mode_label': 'الوضع الداكن',
+            'vibration_label': 'الهزاز',
+            'volume_label': 'مستوى الصوت',
+            'tone_label': 'نغمة التنبيه',
+            'save_btn': 'حفظ التغييرات',
+            'logout_label': 'تسجيل الخروج',
+            'enabled': 'تم التفعيل',
+            'disabled': 'تم التعطيل'
+        }
+    };
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Modal Control
+    function openSoundSettings() { document.getElementById('sound-modal').classList.remove('hidden'); }
+    function closeSoundSettings() { document.getElementById('sound-modal').classList.add('hidden'); }
+    function updateVolume(val) { document.getElementById('volume-val').textContent = val + '%'; localStorage.setItem('sanctuary_volume', val); }
+    function selectTone(tone) { localStorage.setItem('sanctuary_tone', tone); showToast('Selected Tone: ' + tone); }
+
+    function saveDefaultDuration(val) {
+        localStorage.setItem('sanctuary_default_duration', val);
+        showToast('Default duration updated | تم تحديث المدة');
+    }
+
+    // Toggle logic
+    function toggleSetting(key) {
+        const settings = JSON.parse(localStorage.getItem('sanctuary_settings') || '{}');
+        settings[key] = !settings[key];
+        if (key === 'vibration') localStorage.setItem('sanctuary_vibration', settings[key]);
+        localStorage.setItem('sanctuary_settings', JSON.stringify(settings));
+        updateToggles();
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const msg = settings[key] ? translations[lang]['enabled'] : translations[lang]['disabled'];
+        showToast(msg);
+    }
+
+    function updateToggles() {
+        const settings = JSON.parse(localStorage.getItem('sanctuary_settings') || '{}');
+        const toggles = {
+            'auto_archive': 'auto-archive-toggle',
+            'push_notifications': 'push-notifications-toggle',
+            'vibration': 'vibrate-toggle'
+        };
+        for (const [key, id] of Object.entries(toggles)) {
+            const btn = document.getElementById(id);
+            if (!btn) continue;
+            const marker = btn.querySelector('div');
+            if (settings[key]) {
+                btn.classList.replace('bg-surface-container-high', 'bg-primary-container');
+                marker.style.transform = (id === 'vibrate-toggle' || id === 'push-notifications-toggle') ? 'translateX(24px)' : 'translateX(20px)';
+            } else {
+                btn.classList.replace('bg-primary-container', 'bg-surface-container-high');
+                marker.style.transform = 'translateX(0)';
+            }
+        }
+    }
+
+    // Currency selection
+    function selectCurrency(curr) {
+        localStorage.setItem('sanctuary_currency', curr);
+        updateCurrencyUI();
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        showToast(lang === 'ar' ? `تم تغيير العملة إلى ${curr}` : `Currency set to ${curr}`);
+    }
+
+    function updateCurrencyUI() {
+        const curr = localStorage.getItem('sanctuary_currency') || 'SAR';
+        ['USD', 'EGP', 'SAR'].forEach(c => {
+            const btn = document.getElementById(`curr-${c}`);
+            if (!btn) return;
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (c === curr) {
+                btn.classList.replace('border-transparent', 'border-primary-container');
+                btn.classList.add('bg-primary/5');
+                icon.textContent = 'radio_button_checked';
+                icon.classList.replace('text-outline-variant', 'text-primary-container');
+                icon.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                btn.classList.replace('border-primary-container', 'border-transparent');
+                btn.classList.remove('bg-primary/5');
+                icon.textContent = 'radio_button_unchecked';
+                icon.classList.replace('text-primary-container', 'text-outline-variant');
+                icon.style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+    }
+
+    // Language selection
+    function selectLanguage(lang) {
+        localStorage.setItem('sanctuary_lang', lang);
+        applyTranslations();
+        updateLanguageUI();
+        showToast(lang === 'ar' ? 'تم تغيير اللغة للعربية' : 'Language set to English');
+        setTimeout(() => location.reload(), 500); 
+    }
+
+    function applyTranslations() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const dictionary = translations[lang];
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        
+        // Translate elements with class trans-key and data-key attribute
+        document.querySelectorAll('.trans-key').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (dictionary[key]) el.textContent = dictionary[key];
+        });
+        
+        // Translate direct hardcoded headers if any remaining
+        document.querySelectorAll('h1, h2, h3').forEach(el => {
+           if (el.textContent.includes('|')) {
+               const parts = el.textContent.split('|');
+                el.textContent = lang === 'ar' ? parts[1].trim() : parts[0].trim();
+           }
+        });
+    }
+
+    function updateLanguageUI() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const enBtn = document.getElementById('lang-en');
+        const arBtn = document.getElementById('lang-ar');
+        if (lang === 'en') {
+            enBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            enBtn.classList.remove('text-on-surface-variant');
+            arBtn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+            arBtn.classList.add('text-on-surface-variant');
+        } else {
+            arBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            arBtn.classList.remove('text-on-surface-variant');
+            enBtn.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+            enBtn.classList.add('text-on-surface-variant');
+        }
+    }
+
+    // Deep Dark Mode
+    function toggleDarkMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('sanctuary_dark_mode', isDark);
+        updateDarkModeUI();
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const msg = isDark ? 
+            (lang === 'ar' ? 'تم تفعيل السواد العميق 🌑' : 'Deep Black Mode Active') : 
+            (lang === 'ar' ? 'تم تفعيل الوضع النهاري ☀️' : 'Day Mode Active');
+        showToast(msg);
+    }
+
+    function updateDarkModeUI() {
+        const isDark = localStorage.getItem('sanctuary_dark_mode') === 'true';
+        if (isDark) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+        
+        const btn = document.getElementById('dark-mode-toggle');
+        if (btn) {
+            const marker = btn.querySelector('div');
+            if (isDark) {
+                btn.classList.replace('bg-surface-container-high', 'bg-primary-container');
+                marker.style.transform = 'translateX(24px)';
+            } else {
+                btn.classList.replace('bg-primary-container', 'bg-surface-container-high');
+                marker.style.transform = 'translateX(0)';
+            }
+        }
+    }
+
+    function syncData() {
+        const icon = document.getElementById('sync-icon');
+        icon.classList.add('animate-spin');
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        showToast(lang === 'ar' ? 'جاري مزامنة بياناتك...' : 'Syncing your data...');
+        setTimeout(() => {
+            icon.classList.remove('animate-spin');
+            localStorage.setItem('sanctuary_last_sync', new Date().toISOString());
+            updateSyncUI();
+            showToast(translations[lang]['sync_label'] + (lang === 'ar' ? ' مكتملة' : ' Complete'));
+        }, 2000);
+    }
+
+    function updateSyncUI() {
+        const lastSync = localStorage.getItem('sanctuary_last_sync');
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        if (lastSync) {
+            const date = new Date(lastSync);
+            document.getElementById('last-sync-time').textContent = translations[lang]['last_sync'] + date.toLocaleTimeString();
+        }
+    }
+
+    function exportData() {
+        const data = {
+            tasks: JSON.parse(localStorage.getItem('sanctuary_tasks') || '[]'),
+            budget: localStorage.getItem('sanctuary_budget'),
+            settings: JSON.parse(localStorage.getItem('sanctuary_settings') || '{}')
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `sanctuary_backup_${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        showToast(lang === 'ar' ? 'جاري تصدير نسخة احتياطية...' : 'Exporting backup...');
+    }
+
+    function clearCache() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const msg = lang === 'ar' ? 'هل أنت متأكد؟ سيتم حذف جميع بياناتك!' : 'Are you sure? All data will be wiped!';
+        if (confirm(msg)) {
+            localStorage.clear();
+            location.reload();
+        }
+    }
+
+    function signOut() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        if (confirm(lang === 'ar' ? 'تسجيل الخروج؟' : 'Sign Out?')) window.location.href = '../index.html';
+    }
+
+    window.onload = () => {
+        applyTranslations();
+        updateToggles();
+        updateCurrencyUI();
+        updateLanguageUI();
+        updateDarkModeUI();
+        updateSyncUI();
+        
+        // Set volume slider
+        const vol = localStorage.getItem('sanctuary_volume') || 80;
+        document.querySelector('input[type="range"]').value = vol;
+        document.getElementById('volume-val').textContent = vol + '%';
+
+        // Set default duration select
+        const defDur = localStorage.getItem('sanctuary_default_duration') || "60";
+        document.getElementById('default-duration-select').value = defDur;
+
+        document.getElementById('cache-size').textContent = (Math.random() * 5 + 1).toFixed(1) + ' MB';
+    };
+</script>
+<!-- ===== Bottom Navigation Bar ===== -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-3xl bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.06)] border-t border-outline-variant/20">
+<div class="w-full flex justify-around items-center px-2 pb-5 pt-3">
+<a href="../sanctuary_dashboard/code.html"
+   class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Home">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="home_nav">الرئيسية</span>
+</a>
+<a href="../task_details_with_budget/code.html"
+   class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Tasks">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="tasks_nav">المهام</span>
+</a>
+<a href="../calendar_with_deadline_alerts/code.html"
+   class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Calendar">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="calendar_nav">التقويم</span>
+</a>
+<a href="../budgets/code.html"
+   class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Finance">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="reports_nav">الميزانية</span>
+</a>
+<a href="code.html"
+   class="nav-item flex flex-col items-center justify-center bg-primary/10 text-primary rounded-2xl px-4 py-2 min-w-[56px]" title="Settings">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">settings</span>
+<span class="text-[10px] font-bold font-cairo mt-0.5 trans-key" data-key="settings_nav">الإعدادات</span>
+</a>
+</div>
+</nav>
+</body></html>
