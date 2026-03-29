@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Cairo:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#76f49d",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#a8c8ff",
+              "background": "#f8f9fa",
+              "error": "#ba1a1a",
+              "surface-container": "#edeeef",
+              "on-tertiary-fixed": "#00210c",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "primary-fixed": "#d6e3ff",
+              "primary": "#00488d",
+              "surface-bright": "#f8f9fa",
+              "tertiary-container": "#006f38",
+              "surface-dim": "#d9dadb",
+              "inverse-primary": "#a8c8ff",
+              "surface": "#f8f9fa",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#7efba4",
+              "surface-tint": "#005db5",
+              "surface-variant": "#e1e3e4",
+              "surface-container-low": "#f3f4f5",
+              "inverse-surface": "#2e3132",
+              "secondary": "#944a00",
+              "on-secondary-container": "#663100",
+              "on-surface": "#191c1d",
+              "tertiary": "#005429",
+              "outline-variant": "#c2c6d4",
+              "on-surface-variant": "#424752",
+              "on-primary-fixed": "#001b3d",
+              "tertiary-fixed-dim": "#61de8a",
+              "secondary-fixed-dim": "#ffb783",
+              "on-secondary-fixed": "#301400",
+              "on-primary-fixed-variant": "#00468b",
+              "inverse-on-surface": "#f0f1f2",
+              "secondary-fixed": "#ffdcc5",
+              "on-background": "#191c1d",
+              "primary-container": "#005fb8",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "secondary-container": "#fc8f34",
+              "on-error-container": "#93000a",
+              "outline": "#727783",
+              "on-secondary-fixed-variant": "#713700",
+              "on-primary-container": "#cadcff",
+              "on-tertiary-fixed-variant": "#005228",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e1e3e4"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "arabic": ["Cairo"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body { min-height: 100dvh; animation: fadeIn 0.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .btn-press:active { transform: scale(0.94); transition: transform 0.1s; }
+    .nav-item { transition: all 0.2s ease; }
+    .nav-item:active { transform: scale(0.88); }
+    /* Premium Deep Black Mode */
+    html.dark body { background-color: #000000 !important; color: #f8f9fa; }
+    html.dark .bg-surface-container-lowest { background-color: #0d0d0d !important; border-color: #222 !important; }
+    html.dark .bg-surface-container-low { background-color: #141414 !important; }
+    html.dark .bg-surface-container-high { background-color: #1a1a1a !important; }
+    html.dark .bg-white { background-color: #000 !important; border-color: #222 !important; }
+    html.dark .text-on-surface { color: #f8f9fa !important; }
+    html.dark .text-on-surface-variant { color: #bfc8ca !important; }
+    html.dark .border-outline-variant { border-color: #333 !important; }
+    html.dark #toast { background-color: #222 !important; border: 1px solid #333 !important; }
+
+    #toast {
+        position: fixed; bottom: 100px; left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: #191c1d; color: #fff;
+        padding: 10px 22px; border-radius: 999px;
+        font-size: 13px; font-family: 'Cairo', sans-serif; font-weight: 600;
+        opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 9999; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+</style>
+</head>
+<body class="bg-background font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Toast -->
+<div id="toast"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30">
+<div class="flex items-center justify-between px-5 py-4 w-full max-w-lg mx-auto">
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors btn-press"
+        onclick="navigate('../sanctuary_dashboard/code.html')" title="رجوع">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-on-surface font-headline trans-key" data-key="calendar_nav">التقويم</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors btn-press"
+        onclick="showToast('إضافة حدث جديد')">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+</button>
+</div>
+</div>
+<!-- Next Deadline Banner -->
+<div id="deadline-banner" class="bg-primary text-on-primary px-5 py-2.5 flex items-center justify-between gap-4 hidden">
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined text-xl">alarm</span>
+<span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-error border-2 border-primary rounded-full"></span>
+</div>
+<div class="flex flex-col">
+<p id="banner-text" class="text-xs font-bold leading-tight">...</p>
+</div>
+</div>
+<button class="text-xs font-bold underline underline-offset-4 btn-press trans-key" data-key="view_btn"
+        onclick="navigate('../task_details_with_budget/code.html')">عرض</button>
+</div>
+</header>
+<main class="pt-32 pb-32 px-6 max-w-screen-xl mx-auto min-h-screen">
+<!-- View Toggle & Date Header -->
+<section class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface mb-1 flex items-center gap-2">
+<span id="cal-month-en">...</span>
+<span id="cal-year-display" class="cursor-pointer hover:text-primary transition-all active:scale-95 inline-block" onclick="openYearPicker()" title="تغيير السنة">...</span>
+</h2>
+<div class="flex items-center gap-2 text-on-surface-variant font-arabic">
+<button class="text-sm font-bold bg-surface-container-low px-3 py-1.5 rounded-xl hover:bg-primary hover:text-on-primary transition-all active:scale-95 flex items-center gap-1.5" onclick="goToToday()">
+<span class="material-symbols-outlined text-[16px]">today</span>
+<span class="trans-key" data-key="today_btn">اليوم</span>
+</button>
+</div>
+</div>
+<div class="inline-flex p-1 bg-surface-container-low rounded-xl" id="view-toggles">
+<button class="px-6 py-2 text-sm font-semibold rounded-lg bg-surface-container-lowest shadow-sm text-primary btn-press trans-key" data-key="daily_toggle" onclick="setViewMode('daily', this)">يومي</button>
+<button class="px-6 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface btn-press transition-colors trans-key" data-key="weekly_toggle" onclick="setViewMode('weekly', this)">أسبوعي</button>
+<button class="px-6 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface btn-press transition-colors trans-key" data-key="monthly_toggle" onclick="setViewMode('monthly', this)">شهري</button>
+</div>
+</section>
+<!-- Bento Calendar Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+<!-- Mini Calendar / Date Picker & Alerts -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-low rounded-3xl p-6">
+<div class="flex items-center justify-between mb-6">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span id="cal-month-display" class="font-bold text-on-surface">September</span>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 gap-y-4 text-center" id="cal-weekdays">
+    <!-- Localized via JS -->
+</div>
+<!-- Dynamic Calendar Grid injected via JS -->
+<div id="calendar-grid" class="grid grid-cols-7 gap-y-4 text-center mt-4">
+</div>
+</div>
+</div>
+<!-- Deadline Alerts -->
+<div class="bg-error-container/40 rounded-3xl p-6 border border-error/10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-on-error-container flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">notifications_active</span>
+<span class="trans-key" data-key="deadline_alerts_title">تنبيهات المواعيد</span>
+</h3>
+<span id="deadline-count" class="text-[10px] font-bold bg-error text-on-error px-1.5 py-0.5 rounded trans-key" data-key="msg_count" style="display:none;">0</span>
+</div>
+<div id="deadline-alerts-container" class="space-y-3">
+    <!-- Dynamic Deadline Alerts injected via JS -->
+</div>
+<p class="mt-4 text-[11px] font-arabic text-on-error-container text-right opacity-80" dir="rtl">تنبيهات المهام المقتربة بشدة</p>
+</div>
+</div>
+<!-- Detailed Timeline -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-8 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<h3 id="timeline-title" class="text-xl font-bold font-headline trans-key" data-key="timeline_default_title">جدول اليوم الحافل</h3>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span class="text-xs font-semibold text-on-surface-variant trans-key" data-key="cat_work">Work / عمل</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+<span class="text-xs font-semibold text-on-surface-variant trans-key" data-key="cat_home">Home / منزل</span>
+</div>
+</div>
+</div>
+<div id="dynamic-timeline" class="space-y-8 relative before:absolute before:right-3 before:top-2 before:bottom-2 before:w-px before:bg-surface-container-high" dir="rtl">
+    <!-- Tasks dynamically rendered here for the selected day -->
+</div>
+</div>
+</section>
+<!-- Up Next Section (Asymmetric Content) -->
+<section class="mb-12">
+<h3 class="text-2xl font-bold font-headline mb-6 trans-key" data-key="coming_up_title">Coming Up Next Week</h3>
+<div class="flex flex-nowrap overflow-x-auto gap-6 hide-scrollbar pb-4 -mx-6 px-6">
+<!-- Card 1 -->
+<div class="flex-none w-72 bg-surface-container-low rounded-3xl p-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary">spa</span>
+</div>
+<span class="text-xs font-bold text-tertiary-container bg-tertiary-fixed/30 px-2 py-1 rounded-md mb-2 inline-block">Monday, Sept 16</span>
+<h5 class="text-xl font-bold text-on-surface leading-tight">Wellness &amp; Yoga Retreat</h5>
+<p class="text-on-surface-variant font-arabic mt-2" dir="rtl">منتجع العافية واليوغا</p>
+</div>
+<!-- Card 2 -->
+<div class="flex-none w-72 bg-primary text-on-primary rounded-3xl p-6 hover:opacity-95 transition-opacity cursor-pointer relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<span class="text-xs font-bold bg-white/20 px-2 py-1 rounded-md mb-2 inline-block text-white">Tuesday, Sept 17</span>
+<h5 class="text-xl font-bold leading-tight">V3 Architecture Launch</h5>
+<p class="text-blue-200 font-arabic mt-2" dir="rtl">إطلاق البنية التحتية V3</p>
+</div>
+<!-- Card 3 -->
+<div class="flex-none w-72 bg-surface-container-low rounded-3xl p-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary">family_restroom</span>
+</div>
+<span class="text-xs font-bold text-secondary-container bg-secondary-fixed/30 px-2 py-1 rounded-md mb-2 inline-block">Friday, Sept 20</span>
+<h5 class="text-xl font-bold text-on-surface leading-tight">Family Dinner Gathering</h5>
+<p class="text-on-surface-variant font-arabic mt-2" dir="rtl">تجمع عشاء عائلي</p>
+</div>
+</div>
+</section>
+</main>
+<!-- ===== Bottom Navigation Bar ===== -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-3xl bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.06)] border-t border-outline-variant/20">
+<div class="w-full flex justify-around items-center px-2 pb-5 pt-3">
+<a href="../sanctuary_dashboard/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Home">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="home_nav">الرئيسية</span>
+</a>
+<a href="../task_details_with_budget/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Tasks">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="tasks_nav">المهام</span>
+</a>
+<a href="code.html" class="nav-item flex flex-col items-center justify-center bg-primary/10 text-primary rounded-2xl px-4 py-2 min-w-[56px]" title="Calendar">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">calendar_month</span>
+<span class="text-[10px] font-bold font-cairo mt-0.5 trans-key" data-key="calendar_nav">التقويم</span>
+</a>
+<a href="../budgets/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Finance">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="reports_nav">الميزانية</span>
+</a>
+<a href="../advanced_settings/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="Settings">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5 trans-key" data-key="settings_nav">الإعدادات</span>
+</a>
+</div>
+</nav>
+
+<!-- Year Picker Modal -->
+<div id="year-modal" class="fixed inset-0 bg-surface/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-surface-container-lowest w-full max-w-sm rounded-[32px] shadow-2xl overflow-hidden border border-outline-variant/20 transform scale-95 transition-transform duration-300" id="year-modal-content">
+        <div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+            <h3 class="text-xl font-bold font-headline text-on-surface">السنة (Year)</h3>
+            <button class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-error-container hover:text-error transition-colors" onclick="closeYearPicker()">
+                <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+        </div>
+        <div class="p-6">
+            <!-- Decades Navigation -->
+            <div class="flex items-center justify-between mb-4">
+                <button class="p-2 bg-surface-container-high rounded-xl hover:bg-primary/20 text-primary transition-colors btn-press" onclick="scrollDecade(-1)">
+                    <span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+                </button>
+                <span id="decade-label" class="text-sm font-bold text-on-surface-variant tracking-widest font-mono">2020s</span>
+                <button class="p-2 bg-surface-container-high rounded-xl hover:bg-primary/20 text-primary transition-colors btn-press" onclick="scrollDecade(1)">
+                    <span class="material-symbols-outlined text-[18px] ml-1">arrow_forward_ios</span>
+                </button>
+            </div>
+            <!-- Years Grid -->
+            <div id="years-grid" class="grid grid-cols-3 gap-3">
+                <!-- Generated via JS -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        en: {
+            calendar_nav: 'Calendar',
+            home_nav: 'Home',
+            tasks_nav: 'Tasks',
+            reports_nav: 'Finance',
+            settings_nav: 'Settings',
+            today_btn: 'Today',
+            daily_toggle: 'Daily',
+            weekly_toggle: 'Weekly',
+            monthly_toggle: 'Monthly',
+            deadline_alerts_title: 'Deadline Alerts',
+            msg_count: 'tasks',
+            timeline_default_title: 'Busy Schedule',
+            cat_work: 'Work',
+            cat_home: 'Home',
+            cat_person: 'Personal',
+            cat_health: 'Health',
+            coming_up_title: 'Coming Up Next',
+            view_btn: 'View',
+            back_btn_toast: '📍 Back to current day',
+            year_modal_title: 'Select Year',
+            urgent_label: 'URGENT',
+            no_tasks_period: 'No tasks in this period',
+            add_task_period: 'Add task for this period',
+            banner_rem: 'Reminder: Task due soon!',
+            days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        },
+        ar: {
+            calendar_nav: 'التقويم',
+            home_nav: 'الرئيسية',
+            tasks_nav: 'المهام',
+            reports_nav: 'الميزانية',
+            settings_nav: 'الإعدادات',
+            today_btn: 'اليوم',
+            daily_toggle: 'يومي',
+            weekly_toggle: 'أسبوعي',
+            monthly_toggle: 'شهري',
+            deadline_alerts_title: 'تنبيهات المواعيد',
+            msg_count: 'مهام',
+            timeline_default_title: 'جدول اليوم الحافل',
+            cat_work: 'عمل',
+            cat_home: 'منزل',
+            cat_person: 'شخصي',
+            cat_health: 'صحة',
+            coming_up_title: 'قادم في الأسبوع المقبل',
+            view_btn: 'عرض',
+            back_btn_toast: '📍 عدنا إلى اليوم الحالي',
+            year_modal_title: 'اختر السنة',
+            urgent_label: 'عاجل',
+            no_tasks_period: 'لا توجد مهام في هذه الفترة',
+            add_task_period: 'إضافة مهمة لهذه الفترة',
+            banner_rem: 'تنبيه: مهمة تنتهي قريباً!',
+            days: ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
+            months: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+        }
+    };
+
+    function applyGlobalState() {
+        const isDark = localStorage.getItem('sanctuary_dark_mode') === 'true';
+        if (isDark) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const dict = translations[lang];
+        document.documentElement.lang = lang;
+        const dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.dir = dir;
+        
+        // Update static keys
+        document.querySelectorAll('.trans-key').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (dict[key]) el.textContent = dict[key];
+        });
+
+        // Update weekdays
+        const weekdaysEl = document.getElementById('cal-weekdays');
+        if (weekdaysEl) {
+            weekdaysEl.innerHTML = dict.days.map(d => `<span class="text-xs font-bold text-outline-variant uppercase tracking-wider">${d}</span>`).join('');
+        }
+    }
+
+    function navigate(url) {
+        document.body.style.opacity = '0.7';
+        document.body.style.transition = 'opacity 0.15s ease';
+        setTimeout(() => { window.location.href = url; }, 150);
+    }
+    
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    let currentDate = new Date();
+    let currentSelectedDate = new Date();
+    let currentViewMode = 'daily';
+
+    function renderCalendar() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const dict = translations[lang];
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        
+        document.getElementById('cal-month-en').textContent = dict.months[month];
+        document.getElementById('cal-month-display').textContent = dict.months[month];
+        document.getElementById('cal-year-display').textContent = year;
+        
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const prevDays = new Date(year, month, 0).getDate();
+        
+        const tasks = JSON.parse(localStorage.getItem('sanctuary_tasks')) || [];
+        let taskDatesMap = {};
+        tasks.forEach(t => {
+            if(!t.completed && (t.startDate || t.endDate)) {
+                const dates = [];
+                if(t.startDate) dates.push(new Date(t.startDate));
+                if(t.endDate) dates.push(new Date(t.endDate));
+                dates.forEach(d => {
+                    if(d.getFullYear() === year && d.getMonth() === month) {
+                        taskDatesMap[d.getDate()] = (taskDatesMap[d.getDate()] || 0) + 1;
+                    }
+                });
+            }
+        });
+
+        const today = new Date();
+        let html = '';
+        
+        for(let i = firstDay - 1; i >= 0; i--) {
+            html += `<button class="p-2 text-outline-variant/30 font-medium rounded-xl pointer-events-none">${prevDays - i}</button>`;
+        }
+        
+        for(let i = 1; i <= daysInMonth; i++) {
+            const isToday = today.getDate() === i && today.getMonth() === month && today.getFullYear() === year;
+            const isSelected = currentSelectedDate.getDate() === i && currentSelectedDate.getMonth() === month && currentSelectedDate.getFullYear() === year;
+            
+            let styling = "p-2 font-medium rounded-xl hover:bg-surface-container transition-colors relative";
+            if (isToday) styling = "p-2 font-bold bg-primary text-on-primary rounded-xl relative shadow-md scale-110 z-10";
+            else if (isSelected) styling = "p-2 font-bold border-2 border-primary text-primary rounded-xl relative";
+            
+            let dots = '';
+            if (taskDatesMap[i]) {
+                const count = Math.min(taskDatesMap[i], 3);
+                for(let k=0; k<count; k++) dots += `<span class="w-1 h-1 rounded-full ${isToday ? 'bg-white' : 'bg-primary'}"></span>`;
+            }
+            
+            html += `<button class="${styling}" onclick="selectDate(${i}, ${month}, ${year})">
+                        <span>${i}</span>
+                        <span class="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-0.5">${dots}</span>
+                     </button>`;
+        }
+        document.getElementById('calendar-grid').innerHTML = html;
+        renderTimelineForView();
+    }
+    
+    function setViewMode(mode, btnElement) {
+        currentViewMode = mode;
+        const container = btnElement.parentElement;
+        container.querySelectorAll('button').forEach(b => {
+            b.className = "px-6 py-2 text-sm font-medium text-on-surface-variant hover:text-on-surface btn-press transition-colors";
+        });
+        btnElement.className = "px-6 py-2 text-sm font-semibold rounded-lg bg-surface-container-lowest shadow-sm text-primary btn-press transition-colors";
+        renderTimelineForView();
+    }
+
+    function selectDate(d, m, y) {
+        currentSelectedDate = new Date(y, m, d);
+        if (currentViewMode !== 'daily') {
+            const dailyBtn = document.getElementById('view-toggles').querySelector('button:nth-child(1)');
+            setViewMode('daily', dailyBtn);
+        } else {
+            renderCalendar();
+        }
+    }
+
+    function renderTimelineForView() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const dict = translations[lang];
+        const timeline = document.getElementById('dynamic-timeline');
+        const tasks = JSON.parse(localStorage.getItem('sanctuary_tasks')) || [];
+        
+        const y = currentSelectedDate.getFullYear();
+        const m = currentSelectedDate.getMonth();
+        const d = currentSelectedDate.getDate();
+
+        let filteredTasks = [];
+        let addDateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        
+        if(currentViewMode === 'daily') {
+            document.getElementById('timeline-title').textContent = (lang === 'ar' ? `مهام يوم ${d} ${dict.months[m]}` : `Tasks for ${dict.months[m]} ${d}`);
+            filteredTasks = tasks.filter(t => !t.completed && (t.startDate?.startsWith(addDateStr) || t.endDate?.startsWith(addDateStr)));
+        } else {
+            // Simple weekly/monthly filters
+            document.getElementById('timeline-title').textContent = (currentViewMode === 'weekly' ? dict.weekly_toggle : dict.monthly_toggle);
+            filteredTasks = tasks.filter(t => !t.completed && (new Date(t.endDate || t.startDate).getMonth() === m));
+        }
+
+        let html = '';
+        if(filteredTasks.length === 0) {
+            html = `<div class="text-center py-12 text-on-surface-variant"><p>${dict.no_tasks_period}</p></div>`;
+        } else {
+            filteredTasks.forEach(task => {
+                const icon = {'work':'work', 'home':'home', 'personal':'person', 'health':'favorite'}[task.category] || 'task';
+                html += `
+                <div class="relative pr-10 pl-2">
+                    <div class="absolute right-0 top-1.5 w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-lowest translate-x-1/2">
+                        <span class="material-symbols-outlined text-[14px] text-on-primary">${icon}</span>
+                    </div>
+                    <div class="p-4 bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/10 cursor-pointer hover:bg-surface-container-low transition-colors" onclick="navigate('../stitch_task_list/code.html?taskId=${task.id}')">
+                        <h4 class="font-bold text-on-surface">${task.title}</h4>
+                        <p class="text-xs text-on-surface-variant mt-1 line-clamp-1">${task.desc || ''}</p>
+                    </div>
+                </div>`;
+            });
+        }
+        
+        html += `<button onclick="navigate('../stitch_task_list/code.html?date=${addDateStr}')" class="w-full mt-4 py-3 rounded-2xl border-2 border-dashed border-primary/20 text-primary font-bold text-xs flex items-center justify-center gap-2 btn-press">
+                    <span class="material-symbols-outlined text-sm">add_circle</span> ${dict.add_task_period}
+                 </button>`;
+        timeline.innerHTML = html;
+        timeline.style.direction = (lang === 'ar' ? 'rtl' : 'ltr');
+    }
+
+    function renderDeadlineAlerts() {
+        const lang = localStorage.getItem('sanctuary_lang') || 'ar';
+        const dict = translations[lang];
+        const container = document.getElementById('deadline-alerts-container');
+        const tasks = JSON.parse(localStorage.getItem('sanctuary_tasks')) || [];
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        
+        const urgent = tasks.filter(t => {
+            if(t.completed || !t.endDate) return false;
+            const diff = (new Date(t.endDate) - today) / (1000*3600*24);
+            return diff >= 0 && diff <= 2;
+        });
+
+        if (urgent.length > 0) {
+            document.getElementById('deadline-count').textContent = urgent.length + ' ' + dict.msg_count;
+            document.getElementById('deadline-count').style.display = 'inline-block';
+            container.innerHTML = urgent.slice(0, 3).map(t => `
+                <div class="p-3 bg-surface-container-lowest rounded-xl flex items-center gap-3 border-l-4 border-error cursor-pointer" onclick="navigate('../stitch_task_list/code.html?taskId=${t.id}')">
+                    <span class="material-symbols-outlined text-error text-sm">schedule</span>
+                    <p class="text-xs font-bold text-on-surface truncate">${t.title}</p>
+                </div>`).join('');
+            
+            // Show banner
+            document.getElementById('deadline-banner').classList.remove('hidden');
+            document.getElementById('banner-text').textContent = dict.banner_rem + ' (' + urgent[0].title + ')';
+        } else {
+            container.innerHTML = `<p class="text-xs text-on-surface-variant text-center py-4">${dict.urgent_label}: 0</p>`;
+        }
+    }
+
+    function changeMonth(delta) { currentDate.setMonth(currentDate.getMonth() + delta); renderCalendar(); }
+    function goToToday() { currentDate = new Date(); currentSelectedDate = new Date(); renderCalendar(); showToast(translations[localStorage.getItem('sanctuary_lang')||'ar'].back_btn_toast); }
+    function openYearPicker() { document.getElementById('year-modal').classList.remove('opacity-0', 'pointer-events-none'); renderDecade(); }
+    function closeYearPicker() { document.getElementById('year-modal').classList.add('opacity-0', 'pointer-events-none'); }
+    
+    let currentDecadeStart = Math.floor(new Date().getFullYear() / 10) * 10;
+    function scrollDecade(d) { currentDecadeStart += d*10; renderDecade(); }
+    function renderDecade() {
+        const grid = document.getElementById('years-grid');
+        document.getElementById('decade-label').textContent = currentDecadeStart + "s";
+        let html = '';
+        for (let y = currentDecadeStart - 1; y <= currentDecadeStart + 10; y++) {
+            const isSel = y === currentDate.getFullYear();
+            html += `<button class="py-3 rounded-xl font-bold ${isSel ? 'bg-primary text-on-primary' : 'bg-surface-container-low'} " onclick="selectYearAndClose(${y})">${y}</button>`;
+        }
+        grid.innerHTML = html;
+    }
+    function selectYearAndClose(y) { currentDate.setFullYear(y); renderCalendar(); closeYearPicker(); }
+
+    window.addEventListener('load', () => {
+        applyGlobalState();
+        renderCalendar();
+        renderDeadlineAlerts();
+    });
+</script>
+</body></html>

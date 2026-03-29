@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#a8c8ff",
+              "on-surface-variant": "#424752",
+              "surface-tint": "#005db5",
+              "surface-container-lowest": "#ffffff",
+              "outline-variant": "#c2c6d4",
+              "on-secondary-fixed-variant": "#713700",
+              "error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#00468b",
+              "inverse-surface": "#2e3132",
+              "background": "#f8f9fa",
+              "on-secondary": "#ffffff",
+              "inverse-primary": "#a8c8ff",
+              "secondary": "#944a00",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#005228",
+              "tertiary": "#005429",
+              "secondary-fixed": "#ffdcc5",
+              "surface": "#f8f9fa",
+              "on-primary-fixed": "#001b3d",
+              "surface-variant": "#e1e3e4",
+              "tertiary-fixed-dim": "#61de8a",
+              "primary-fixed": "#d6e3ff",
+              "primary": "#00488d",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e1e3e4",
+              "on-primary-container": "#cadcff",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "tertiary-container": "#006f38",
+              "inverse-on-surface": "#f0f1f2",
+              "secondary-fixed-dim": "#ffb783",
+              "secondary-container": "#fc8f34",
+              "on-secondary-fixed": "#301400",
+              "surface-bright": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "surface-container": "#edeeef",
+              "on-primary": "#ffffff",
+              "outline": "#727783",
+              "on-tertiary-fixed": "#00210c",
+              "on-secondary-container": "#663100",
+              "surface-container-high": "#e7e8e9",
+              "tertiary-fixed": "#7efba4",
+              "on-background": "#191c1d",
+              "primary-container": "#005fb8",
+              "surface-container-low": "#f3f4f5",
+              "on-tertiary-container": "#76f49d",
+              "surface-dim": "#d9dadb"
+            },
+            fontFamily: {
+              "plus-jakarta": ["Plus Jakarta Sans"],
+              "cairo": ["Cairo"],
+              "inter": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "md": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Cairo', sans-serif; animation: fadeIn 0.2s ease-in; }
+      .font-numbers { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+      .btn-press:active { transform: scale(0.94); transition: transform 0.1s; }
+      .nav-item { transition: all 0.2s ease; }
+      .nav-item:active { transform: scale(0.88); }
+      body { min-height: 100dvh; }
+      #toast {
+        position: fixed; bottom: 100px; left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: #191c1d; color: #fff;
+        padding: 10px 22px; border-radius: 999px;
+        font-size: 13px; font-family: 'Cairo', sans-serif; font-weight: 600;
+        opacity: 0; pointer-events: none; transition: all 0.3s ease;
+        z-index: 9999; white-space: nowrap;
+      }
+      #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- Toast -->
+<div id="toast"></div>
+<!-- TopAppBar -->
+<header class="bg-surface/90 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-outline-variant/30">
+<div class="flex items-center justify-between px-5 h-16 w-full max-w-lg mx-auto">
+<div class="flex items-center gap-3">
+<button class="hover:bg-surface-container transition-colors p-2 rounded-full btn-press"
+        onclick="navigate('../sanctuary_dashboard/code.html')" title="رجوع">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-cairo text-lg font-bold text-primary">التقارير المالية</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container transition-colors p-2 rounded-full btn-press"
+        onclick="showToast('خيارات التقرير')">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-20 px-4 md:px-8 max-w-screen-xl mx-auto space-y-8">
+<!-- Header Section -->
+<section class="mt-4">
+<h2 class="text-3xl font-bold font-cairo text-on-surface mb-2">مرحباً بك في ملخصك المالي</h2>
+<p class="text-on-surface-variant font-cairo">تتبع ميزانيتك ومصروفاتك في Daily Sanctuary بكل سهولة.</p>
+</section>
+<!-- Time Filters -->
+<div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-cairo font-semibold transition-colors">هذا الشهر</button>
+<button class="bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high px-6 py-2 rounded-full font-cairo font-semibold transition-colors">آخر 3 أشهر</button>
+<button class="bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high px-6 py-2 rounded-full font-cairo font-semibold transition-colors">مخصص</button>
+</div>
+<!-- Bento Grid: Main Financial Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Budget vs Actual Card -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-3xl p-8 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="space-y-4">
+<div class="space-y-4">
+<h3 class="text-on-surface-variant font-cairo font-medium">إجمالي الميزانية مقابل الإنفاق</h3>
+<div class="space-y-1">
+<span class="text-4xl font-plus-jakarta font-extrabold text-primary" id="fr-total-spent">0.00</span>
+<span class="text-sm font-cairo text-on-surface-variant mr-1">ريال سعودي</span>
+</div>
+<p class="text-sm font-cairo text-on-surface-variant">تم استهلاك <span class="font-numbers font-bold text-secondary" id="fr-progress-text">0%</span> من الميزانية المحددة.</p>
+</div>
+<!-- Visual Progress Ring (CSS-based Mock) -->
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-high" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-container transition-all duration-1000 ease-out" id="fr-progress-ring" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="364.4" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-2xl">
+<p class="text-xs text-on-surface-variant mb-1 font-cairo">المتبقي</p>
+<p class="text-xl font-plus-jakarta font-bold text-tertiary" id="fr-remaining">0.00</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl">
+<p class="text-xs text-on-surface-variant mb-1 font-cairo">المنفق</p>
+<p class="text-xl font-plus-jakarta font-bold text-secondary" id="fr-spent">0.00</p>
+</div>
+</div>
+</div>
+<!-- Spending Distribution (Pie Chart Mock) -->
+<div class="bg-surface-container-lowest rounded-3xl p-8 shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+<h3 class="text-on-surface-variant font-cairo font-medium mb-6">توزيع الإنفاق</h3>
+<div class="flex flex-col items-center gap-6">
+<!-- Pie Chart Layout -->
+<div class="relative w-40 h-40">
+<div class="absolute inset-0 rounded-full border-[12px] border-primary-container border-r-transparent border-b-transparent rotate-45"></div>
+<div class="absolute inset-0 rounded-full border-[12px] border-secondary-container border-l-transparent border-t-transparent -rotate-12"></div>
+<div class="absolute inset-0 rounded-full border-[12px] border-tertiary-container border-l-transparent border-b-transparent rotate-[160deg]"></div>
+</div>
+<div class="w-full space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="font-cairo text-sm">العمل</span>
+</div>
+<span class="font-numbers font-bold text-sm">45%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary-container"></div>
+<span class="font-cairo text-sm">المنزل</span>
+</div>
+<span class="font-numbers font-bold text-sm">30%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+<span class="font-cairo text-sm">شخصي</span>
+</div>
+<span class="font-numbers font-bold text-sm">25%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spending Trends Chart (Bar Chart Mock) -->
+<section class="bg-surface-container-lowest rounded-3xl p-8 shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-center mb-10">
+<h3 class="text-on-surface-variant font-cairo font-medium">اتجاهات الإنفاق (6 أشهر)</h3>
+<div class="flex items-center gap-2 text-xs font-cairo text-on-surface-variant">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span>الإنفاق الشهري</span>
+</div>
+</div>
+<div class="h-48 flex items-end justify-between gap-2 px-2">
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="w-full bg-surface-container-high rounded-t-xl relative group">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-xl transition-all duration-700 h-[60%]"></div>
+</div>
+<span class="text-xs font-numbers text-on-surface-variant">JAN</span>
+</div>
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="w-full bg-surface-container-high rounded-t-xl relative group">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-xl transition-all duration-700 h-[75%]"></div>
+</div>
+<span class="text-xs font-numbers text-on-surface-variant">FEB</span>
+</div>
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="w-full bg-surface-container-high rounded-t-xl relative group">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-xl transition-all duration-700 h-[45%]"></div>
+</div>
+<span class="text-xs font-numbers text-on-surface-variant">MAR</span>
+</div>
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="w-full bg-surface-container-high rounded-t-xl relative group">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-xl transition-all duration-700 h-[90%]"></div>
+</div>
+<span class="text-xs font-numbers text-on-surface-variant">APR</span>
+</div>
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="w-full bg-surface-container-high rounded-t-xl relative group">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-xl transition-all duration-700 h-[55%]"></div>
+</div>
+<span class="text-xs font-numbers text-on-surface-variant">MAY</span>
+</div>
+<div class="flex flex-col items-center gap-3 w-full">
+<div class="w-full bg-surface-container-high rounded-t-xl relative group">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-xl transition-all duration-700 h-[80%]"></div>
+</div>
+<span class="text-xs font-numbers text-on-surface-variant">JUN</span>
+</div>
+</div>
+</section>
+<!-- Top Expenses Section -->
+<section class="space-y-4">
+<h3 class="text-on-surface-variant font-cairo font-medium">أعلى المصروفات</h3>
+<div id="top-expenses-list" class="space-y-3">
+    <!-- Generated via JS -->
+</div>
+</section>
+</main>
+<!-- ===== Bottom Navigation Bar ===== -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-3xl bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.06)] border-t border-outline-variant/20">
+<div class="w-full flex justify-around items-center px-2 pb-5 pt-3">
+<a href="../sanctuary_dashboard/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="الرئيسية">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5">الرئيسية</span>
+</a>
+<a href="../task_details_with_budget/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="المهام">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5">المهام</span>
+</a>
+<a href="../calendar_with_deadline_alerts/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="التقويم">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5">التقويم</span>
+</a>
+<a href="../budgets/code.html" class="nav-item flex flex-col items-center justify-center bg-primary/10 text-primary rounded-2xl px-4 py-2 min-w-[56px]" title="الميزانية">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">payments</span>
+<span class="text-[10px] font-bold font-cairo mt-0.5">الميزانية</span>
+</a>
+<a href="../advanced_settings/code.html" class="nav-item flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 min-w-[56px] hover:text-primary transition-colors rounded-2xl hover:bg-primary/5" title="الإعدادات">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium font-cairo mt-0.5">الإعدادات</span>
+</a>
+</div>
+</nav>
+<script>
+    function navigate(url) {
+        document.body.style.opacity = '0.7';
+        document.body.style.transition = 'opacity 0.15s ease';
+        setTimeout(() => { window.location.href = url; }, 150);
+    }
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('ar-SA').format(amount);
+    }
+
+    function generateFinancialReport() {
+        const totalBudget = parseFloat(localStorage.getItem('sanctuary_budget')) || 0;
+        const tasks = JSON.parse(localStorage.getItem('sanctuary_tasks')) || [];
+        
+        let totalSpent = 0;
+        let expenses = []; // To hold top operations
+
+        tasks.forEach(t => {
+            if(t.completed && t.budget && parseFloat(t.budget) > 0) {
+                totalSpent += parseFloat(t.budget);
+                expenses.push(t);
+            }
+        });
+
+        const remaining = totalBudget - totalSpent;
+        const boundedRemaining = remaining > 0 ? remaining : 0;
+        
+        let pct = 0;
+        if(totalBudget > 0) {
+            pct = (totalSpent / totalBudget) * 100;
+        } else if (totalSpent > 0 && totalBudget === 0) {
+            pct = 100;
+        }
+
+        document.getElementById('fr-total-spent').textContent = formatCurrency(totalSpent);
+        document.getElementById('fr-spent').textContent = formatCurrency(totalSpent);
+        document.getElementById('fr-remaining').textContent = formatCurrency(boundedRemaining);
+        document.getElementById('fr-progress-text').textContent = `${Math.min(Math.round(pct), 100)}%`;
+
+        if (remaining < 0) {
+            document.getElementById('fr-remaining').classList.replace('text-tertiary', 'text-error');
+        } else {
+            document.getElementById('fr-remaining').classList.replace('text-error', 'text-tertiary');
+        }
+
+        // Calculate stroke offset for SVG ring (Circumference is ~364.4)
+        const ring = document.getElementById('fr-progress-ring');
+        const circumference = 364.4; // 2 * pi * r (r=58)
+        const validPct = Math.min(Math.max(pct, 0), 100);
+        const offset = circumference - (validPct / 100) * circumference;
+        ring.style.strokeDashoffset = offset;
+
+        if (pct > 90) {
+            ring.classList.replace('text-primary-container', 'text-error');
+        }
+
+        // Render Top Expenses
+        expenses.sort((a,b) => parseFloat(b.budget) - parseFloat(a.budget));
+        const topExpenses = expenses.slice(0, 5); // Top 5
+        const container = document.getElementById('top-expenses-list');
+        
+        if (topExpenses.length === 0) {
+            container.innerHTML = `<div class="bg-surface-container-lowest p-5 rounded-2xl text-center"><p class="text-on-surface-variant text-sm font-bold">لا توجد مصاريف مسجلة.</p></div>`;
+            return;
+        }
+
+        const icons = { 'work': 'work', 'home': 'home', 'personal': 'person', 'health': 'favorite' };
+        const iconClasses = {
+            'work': 'bg-primary-container/10 text-primary',
+            'home': 'bg-secondary-container/10 text-secondary',
+            'personal': 'bg-tertiary-container/10 text-tertiary',
+            'health': 'bg-error-container/20 text-error'
+        };
+        const catNames = { 'work': 'عمل', 'home': 'منزل', 'personal': 'شخصي', 'health': 'صحة' };
+
+        container.innerHTML = topExpenses.map(task => {
+            const icon = icons[task.category] || 'payments';
+            const catClass = iconClasses[task.category] || iconClasses['work'];
+            const catName = catNames[task.category] || 'أخرى';
+            const dStr = task.endDate || task.startDate || 'بدون تاريخ';
+
+            return `
+            <div class="bg-surface-container-lowest p-5 rounded-2xl flex items-center justify-between group hover:bg-surface-container transition-colors duration-300 btn-press cursor-pointer"
+                 onclick="navigate('../stitch_task_list/code.html?taskId=${task.id}')">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 ${catClass} rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">${icon}</span>
+                    </div>
+                    <div>
+                        <p class="font-cairo font-bold text-on-surface line-clamp-1 max-w-[150px] md:max-w-xs">${task.title}</p>
+                        <p class="text-xs font-cairo text-on-surface-variant">${catName} • ${dStr}</p>
+                    </div>
+                </div>
+                <div class="text-left flex-shrink-0">
+                    <p class="font-plus-jakarta font-bold text-on-surface">${formatCurrency(parseFloat(task.budget))}</p>
+                    <p class="text-[10px] font-cairo text-on-surface-variant">ريال سعودي</p>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+
+    window.addEventListener('load', () => {
+        setTimeout(generateFinancialReport, 150);
+    });
+</script>
+</body></html>
