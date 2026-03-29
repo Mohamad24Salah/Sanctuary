@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#00488d">
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icons/icon-512.png">
   <title>Sanctuary — Design Preview Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --primary: #00488d;
@@ -28,7 +38,9 @@
       --accent-glow: rgba(0, 72, 141, 0.18);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', 'Cairo', sans-serif;
@@ -46,30 +58,33 @@
       padding: 5rem 2rem 6rem;
       text-align: center;
     }
+
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(0,180,255,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 60% at 80% 30%, rgba(148,74,0,0.12) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(0, 180, 255, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 80% 30%, rgba(148, 74, 0, 0.12) 0%, transparent 70%);
     }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 999px;
       padding: 5px 16px;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
       margin-bottom: 1.5rem;
       backdrop-filter: blur(8px);
     }
+
     .hero h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(2.8rem, 7vw, 5rem);
@@ -79,64 +94,86 @@
       line-height: 1.1;
       margin-bottom: 0.75rem;
     }
+
     .hero h1 span {
       background: linear-gradient(90deg, #a8c8ff, #7efba4);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .hero-sub {
       font-family: 'Cairo', sans-serif;
       font-size: 1.15rem;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255, 255, 255, 0.65);
       margin-bottom: 2.5rem;
       max-width: 500px;
       margin-inline: auto;
     }
+
     .hero-stats {
       display: flex;
       justify-content: center;
       gap: 3rem;
       flex-wrap: wrap;
     }
+
     .hero-stat {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
     }
+
     .hero-stat-num {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 2rem;
       font-weight: 800;
       color: #fff;
     }
+
     .hero-stat-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
     }
+
     .hero-orb {
       position: absolute;
       border-radius: 50%;
       filter: blur(60px);
       pointer-events: none;
     }
-    .hero-orb-1 { width: 300px; height: 300px; background: rgba(0,95,184,0.3); top: -80px; left: -80px; }
-    .hero-orb-2 { width: 400px; height: 400px; background: rgba(126,251,164,0.08); bottom: -120px; right: -100px; }
+
+    .hero-orb-1 {
+      width: 300px;
+      height: 300px;
+      background: rgba(0, 95, 184, 0.3);
+      top: -80px;
+      left: -80px;
+    }
+
+    .hero-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: rgba(126, 251, 164, 0.08);
+      bottom: -120px;
+      right: -100px;
+    }
 
     /* ===== NAV TABS ===== */
     .nav-tabs-wrap {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(248,249,250,0.9);
+      background: rgba(248, 249, 250, 0.9);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--outline-variant);
       padding: 0 2rem;
     }
+
     .nav-tabs {
       max-width: 1400px;
       margin: 0 auto;
@@ -145,7 +182,11 @@
       overflow-x: auto;
       scrollbar-width: none;
     }
-    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
     .nav-tab {
       flex-shrink: 0;
       padding: 1rem 1.5rem;
@@ -161,12 +202,28 @@
       align-items: center;
       gap: 6px;
     }
-    .nav-tab:hover { color: var(--primary); background: rgba(0,72,141,0.04); }
-    .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-    .nav-tab .material-symbols-outlined { font-size: 18px; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    .nav-tab:hover {
+      color: var(--primary);
+      background: rgba(0, 72, 141, 0.04);
+    }
+
+    .nav-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .nav-tab .material-symbols-outlined {
+      font-size: 18px;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
 
     /* ===== MAIN CONTENT ===== */
-    .main-wrap { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+    .main-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
 
     /* ===== SECTION HEADER ===== */
     .section-header {
@@ -177,6 +234,7 @@
       gap: 1rem;
       margin-bottom: 2rem;
     }
+
     .section-tag {
       display: inline-flex;
       align-items: center;
@@ -191,6 +249,7 @@
       color: var(--on-surface-variant);
       margin-bottom: 0.5rem;
     }
+
     .section-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 2rem;
@@ -198,6 +257,7 @@
       color: var(--on-surface);
       letter-spacing: -0.02em;
     }
+
     .section-desc {
       font-family: 'Cairo', sans-serif;
       color: var(--on-surface-variant);
@@ -217,16 +277,23 @@
       background: var(--surface-container);
       border-radius: 24px;
       overflow: hidden;
-      transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+      transition: transform 0.3s cubic-bezier(.22, 1, .36, 1), box-shadow 0.3s;
       cursor: pointer;
       position: relative;
     }
+
     .screen-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.10);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
     }
-    .screen-card:hover .preview-overlay { opacity: 1; }
-    .screen-card:hover .iframe-wrap { transform: scale(0.985); }
+
+    .screen-card:hover .preview-overlay {
+      opacity: 1;
+    }
+
+    .screen-card:hover .iframe-wrap {
+      transform: scale(0.985);
+    }
 
     .card-header {
       padding: 1rem 1.25rem 0.85rem;
@@ -236,14 +303,30 @@
       background: #fff;
       border-bottom: 1px solid var(--outline-variant);
     }
-    .card-dots { display: flex; gap: 5px; }
+
+    .card-dots {
+      display: flex;
+      gap: 5px;
+    }
+
     .card-dot {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
     }
-    .dot-red { background: #ff5f57; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #28c840; }
+
+    .dot-red {
+      background: #ff5f57;
+    }
+
+    .dot-yellow {
+      background: #ffbd2e;
+    }
+
+    .dot-green {
+      background: #28c840;
+    }
+
     .card-url {
       flex: 1;
       background: var(--surface-low);
@@ -265,6 +348,7 @@
       transition: transform 0.3s;
       background: #f8f9fa;
     }
+
     .iframe-wrap iframe {
       width: 375px;
       height: 884px;
@@ -284,6 +368,7 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
+
     .preview-btn {
       display: flex;
       align-items: center;
@@ -295,18 +380,26 @@
       font-weight: 700;
       font-size: 14px;
       text-decoration: none;
-      box-shadow: 0 8px 32px rgba(0,72,141,0.35);
+      box-shadow: 0 8px 32px rgba(0, 72, 141, 0.35);
       transform: scale(0.9);
       transition: transform 0.2s;
     }
-    .preview-overlay:hover .preview-btn { transform: scale(1); }
-    .preview-btn .material-symbols-outlined { font-size: 18px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    .preview-overlay:hover .preview-btn {
+      transform: scale(1);
+    }
+
+    .preview-btn .material-symbols-outlined {
+      font-size: 18px;
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
 
     .card-footer {
       padding: 1rem 1.25rem;
       background: #fff;
       border-top: 1px solid var(--outline-variant);
     }
+
     .card-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
@@ -317,12 +410,14 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .card-meta {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
     }
+
     .card-tag {
       display: inline-flex;
       align-items: center;
@@ -334,17 +429,41 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .tag-en { background: #d6e3ff; color: #00468b; }
-    .tag-ar { background: #ffdcc5; color: #713700; }
-    .tag-both { background: #7efba4; color: #00210c; }
-    .tag-design { background: var(--surface-high); color: var(--on-surface-variant); }
+
+    .tag-en {
+      background: #d6e3ff;
+      color: #00468b;
+    }
+
+    .tag-ar {
+      background: #ffdcc5;
+      color: #713700;
+    }
+
+    .tag-both {
+      background: #7efba4;
+      color: #00210c;
+    }
+
+    .tag-design {
+      background: var(--surface-high);
+      color: var(--on-surface-variant);
+    }
+
     .status-dot {
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #28c840;
       flex-shrink: 0;
     }
-    .status-label { font-size: 11px; color: var(--on-surface-variant); font-weight: 500; }
+
+    .status-label {
+      font-size: 11px;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+
     .open-link {
       color: var(--primary);
       text-decoration: none;
@@ -356,8 +475,15 @@
       opacity: 0.7;
       transition: opacity 0.2s;
     }
-    .open-link:hover { opacity: 1; }
-    .open-link .material-symbols-outlined { font-size: 14px; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    .open-link:hover {
+      opacity: 1;
+    }
+
+    .open-link .material-symbols-outlined {
+      font-size: 14px;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
 
     /* ===== DESIGN SYSTEM CARD ===== */
     .design-system-card {
@@ -369,37 +495,52 @@
       overflow: hidden;
       grid-column: span 2;
     }
-    @media (max-width: 780px) { .design-system-card { grid-column: span 1; } }
+
+    @media (max-width: 780px) {
+      .design-system-card {
+        grid-column: span 1;
+      }
+    }
+
     .design-system-card::before {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 200px; height: 200px;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      background: rgba(168,200,255,0.15);
+      background: rgba(168, 200, 255, 0.15);
     }
+
     .design-system-card::after {
       content: '';
       position: absolute;
-      bottom: -40px; left: 60px;
-      width: 160px; height: 160px;
+      bottom: -40px;
+      left: 60px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      background: rgba(126,251,164,0.08);
+      background: rgba(126, 251, 164, 0.08);
     }
+
     .ds-icon {
-      width: 56px; height: 56px;
-      background: rgba(255,255,255,0.12);
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 1.5rem;
     }
+
     .ds-icon .material-symbols-outlined {
       font-size: 28px;
       color: #a8c8ff;
       font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
+
     .ds-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1.6rem;
@@ -407,33 +548,45 @@
       margin-bottom: 0.5rem;
       letter-spacing: -0.02em;
     }
-    .ds-desc { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.7; max-width: 480px; }
+
+    .ds-desc {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
     .ds-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 1.5rem;
     }
+
     .ds-pill {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 5px 14px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
     }
+
     .color-swatches {
       display: flex;
       gap: 6px;
       margin-top: 1.5rem;
       flex-wrap: wrap;
     }
+
     .swatch {
-      width: 32px; height: 32px; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     /* ===== FULLSCREEN MODAL ===== */
@@ -442,13 +595,17 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(12px);
       align-items: center;
       justify-content: center;
       padding: 2rem;
     }
-    .modal.open { display: flex; }
+
+    .modal.open {
+      display: flex;
+    }
+
     .modal-inner {
       position: relative;
       width: 375px;
@@ -456,14 +613,23 @@
       max-height: 884px;
       border-radius: 40px;
       overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-      border: 8px solid rgba(255,255,255,0.1);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+      border: 8px solid rgba(255, 255, 255, 0.1);
     }
-    .modal-inner iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    .modal-inner iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
     .modal-close {
       position: absolute;
-      top: -14px; right: -14px;
-      width: 44px; height: 44px;
+      top: -14px;
+      right: -14px;
+      width: 44px;
+      height: 44px;
       background: #fff;
       border: none;
       border-radius: 50%;
@@ -471,18 +637,27 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       transition: transform 0.2s;
       z-index: 10;
     }
-    .modal-close:hover { transform: scale(1.1); }
-    .modal-close .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; color: #191c1d; font-size: 20px; }
+
+    .modal-close:hover {
+      transform: scale(1.1);
+    }
+
+    .modal-close .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      color: #191c1d;
+      font-size: 20px;
+    }
+
     .modal-label {
       position: absolute;
       bottom: -48px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       font-size: 12px;
       font-weight: 600;
       white-space: nowrap;
@@ -498,542 +673,582 @@
     }
 
     @media (max-width: 600px) {
-      .screens-grid { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 1rem 4rem; }
-      .main-wrap { padding: 2rem 1rem 4rem; }
+      .screens-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 3rem 1rem 4rem;
+      }
+
+      .main-wrap {
+        padding: 2rem 1rem 4rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div style="position:relative; z-index:1;">
-    <div class="hero-badge">
-      <span class="material-symbols-outlined" style="font-size:14px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">spa</span>
-      Design Preview Gallery
-    </div>
-    <h1>Sanctuary<br/><span>App Screens</span></h1>
-    <p class="hero-sub">ملاذك الرقمي للإنتاجية — معاينة شاملة لجميع شاشات التطبيق</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="hero-stat-num">9</span>
-        <span class="hero-stat-label">HTML Screens</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="hero-badge">
+        <span class="material-symbols-outlined"
+          style="font-size:14px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">spa</span>
+        Design Preview Gallery
       </div>
-      <div class="hero-stat">
-        <span class="hero-stat-num">1</span>
-        <span class="hero-stat-label">Design System</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-num">✓</span>
-        <span class="hero-stat-label">Code Valid</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-num">2</span>
-        <span class="hero-stat-label">Languages</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- NAV TABS -->
-<div class="nav-tabs-wrap">
-  <div class="nav-tabs">
-    <a class="nav-tab active" href="#onboarding">
-      <span class="material-symbols-outlined">rocket_launch</span> Onboarding
-    </a>
-    <a class="nav-tab" href="#dashboard">
-      <span class="material-symbols-outlined">dashboard</span> Dashboard
-    </a>
-    <a class="nav-tab" href="#tasks">
-      <span class="material-symbols-outlined">task</span> Tasks
-    </a>
-    <a class="nav-tab" href="#finance">
-      <span class="material-symbols-outlined">payments</span> Finance
-    </a>
-    <a class="nav-tab" href="#calendar">
-      <span class="material-symbols-outlined">calendar_month</span> Calendar
-    </a>
-    <a class="nav-tab" href="#system">
-      <span class="material-symbols-outlined">settings</span> System
-    </a>
-    <a class="nav-tab" href="#design">
-      <span class="material-symbols-outlined">palette</span> Design
-    </a>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main-wrap">
-
-  <!-- ONBOARDING -->
-  <div id="onboarding" style="margin-bottom:4rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">rocket_launch</span> Onboarding</div>
-        <h2 class="section-title">Splash Screen</h2>
-        <p class="section-desc">شاشة الترحيب والبداية — Welcome & Loading</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-      <!-- Splash Screen -->
-      <div class="screen-card" onclick="openModal('splash_screen/code.html', 'Splash Screen')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">splash_screen/code.html</div>
+      <h1>Sanctuary<br /><span>App Screens</span></h1>
+      <p class="hero-sub">ملاذك الرقمي للإنتاجية — معاينة شاملة لجميع شاشات التطبيق</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">9</span>
+          <span class="hero-stat-label">HTML Screens</span>
         </div>
-        <div class="iframe-wrap">
-          <iframe src="splash_screen/code.html" loading="lazy" scrolling="no" title="Splash Screen"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn">
-              <span class="material-symbols-outlined">open_in_full</span>
-              Full Preview
+        <div class="hero-stat">
+          <span class="hero-stat-num">1</span>
+          <span class="hero-stat-label">Design System</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">✓</span>
+          <span class="hero-stat-label">Code Valid</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">2</span>
+          <span class="hero-stat-label">Languages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV TABS -->
+  <div class="nav-tabs-wrap">
+    <div class="nav-tabs">
+      <a class="nav-tab active" href="#onboarding">
+        <span class="material-symbols-outlined">rocket_launch</span> Onboarding
+      </a>
+      <a class="nav-tab" href="#dashboard">
+        <span class="material-symbols-outlined">dashboard</span> Dashboard
+      </a>
+      <a class="nav-tab" href="#tasks">
+        <span class="material-symbols-outlined">task</span> Tasks
+      </a>
+      <a class="nav-tab" href="#finance">
+        <span class="material-symbols-outlined">payments</span> Finance
+      </a>
+      <a class="nav-tab" href="#calendar">
+        <span class="material-symbols-outlined">calendar_month</span> Calendar
+      </a>
+      <a class="nav-tab" href="#system">
+        <span class="material-symbols-outlined">settings</span> System
+      </a>
+      <a class="nav-tab" href="#design">
+        <span class="material-symbols-outlined">palette</span> Design
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-wrap">
+
+    <!-- ONBOARDING -->
+    <div id="onboarding" style="margin-bottom:4rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">rocket_launch</span>
+            Onboarding</div>
+          <h2 class="section-title">Splash Screen</h2>
+          <p class="section-desc">شاشة الترحيب والبداية — Welcome & Loading</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+        <!-- Splash Screen -->
+        <div class="screen-card" onclick="openModal('splash_screen/code.html', 'Splash Screen')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">splash_screen/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="splash_screen/code.html" loading="lazy" scrolling="no" title="Splash Screen"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn">
+                <span class="material-symbols-outlined">open_in_full</span>
+                Full Preview
+              </a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              Splash Screen
+              <a href="splash_screen/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-en">English</span>
+              <span class="card-tag tag-design">Splash</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" style="margin-bottom:4rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">dashboard</span>
+            Dashboard</div>
+          <h2 class="section-title">لوحة التحكم</h2>
+          <p class="section-desc">2 variants — Bento Grid with Voice, Arabic RTL Dashboard</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+
+
+        <!-- Sanctuary Dashboard AR -->
+        <div class="screen-card" onclick="openModal('sanctuary_dashboard/code.html', 'Sanctuary Dashboard (Arabic)')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">sanctuary_dashboard/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="sanctuary_dashboard/code.html" loading="lazy" scrolling="no"
+              title="Sanctuary Dashboard"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              لوحة Sanctuary (عربي)
+              <a href="sanctuary_dashboard/code.html" target="_blank" class="open-link"
+                onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-ar">عربي RTL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TASKS -->
+    <div id="tasks" style="margin-bottom:4rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">task</span> Tasks
+          </div>
+          <h2 class="section-title">تفاصيل المهام</h2>
+          <p class="section-desc">1 screen — Full-featured: subtasks, budget & voice note</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+
+        <!-- Task Details with Budget -->
+        <div class="screen-card" onclick="openModal('task_details_with_budget/code.html', 'Task Details + Budget')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">task_details_with_budget/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="task_details_with_budget/code.html" loading="lazy" scrolling="no"
+              title="Task Details with Budget"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              Task Details + Budget
+              <a href="task_details_with_budget/code.html" target="_blank" class="open-link"
+                onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-both">Bilingual</span>
+              <span class="card-tag tag-design">💰 Budget</span>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- FINANCE -->
+    <div id="finance" style="margin-bottom:4rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">payments</span>
+            Finance</div>
+          <h2 class="section-title">الشؤون المالية</h2>
+          <p class="section-desc">Budgets tracking & Financial reports</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+
+        <!-- Budgets -->
+        <div class="screen-card" onclick="openModal('budgets/code.html', 'Budgets (الميزانيات)')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">budgets/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="budgets/code.html" loading="lazy" scrolling="no" title="Budgets"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              الميزانيات — Budgets
+              <a href="budgets/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-ar">عربي RTL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Reports -->
+        <div class="screen-card"
+          onclick="openModal('financial_reports/code.html', 'Financial Reports (التقارير المالية)')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">financial_reports/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="financial_reports/code.html" loading="lazy" scrolling="no" title="Financial Reports"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              التقارير المالية
+              <a href="financial_reports/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-ar">عربي RTL</span>
+              <span class="card-tag tag-design">📊 Charts</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div id="calendar" style="margin-bottom:4rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">calendar_month</span>
+            Calendar</div>
+          <h2 class="section-title">التقويم والتنبيهات</h2>
+          <p class="section-desc">Calendar with deadline alerts & timeline view</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+
+        <!-- Calendar -->
+        <div class="screen-card"
+          onclick="openModal('calendar_with_deadline_alerts/code.html', 'Calendar with Deadline Alerts')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">calendar_with_deadline_alerts/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="calendar_with_deadline_alerts/code.html" loading="lazy" scrolling="no"
+              title="Calendar"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              Calendar + Deadline Alerts
+              <a href="calendar_with_deadline_alerts/code.html" target="_blank" class="open-link"
+                onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-both">Bilingual</span>
+              <span class="card-tag tag-design">⚡ Alerts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Notifications -->
+        <div class="screen-card"
+          onclick="openModal('phone_notifications/code.html', 'Phone Lock Screen Notifications')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">phone_notifications/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="phone_notifications/code.html" loading="lazy" scrolling="no"
+              title="Phone Notifications"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              Phone Lock Screen Notifications
+              <a href="phone_notifications/code.html" target="_blank" class="open-link"
+                onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-both">Bilingual</span>
+              <span class="card-tag tag-design">🔔 Lock Screen</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SYSTEM -->
+    <div id="system" style="margin-bottom:4rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">settings</span>
+            System</div>
+          <h2 class="section-title">الإعدادات</h2>
+          <p class="section-desc">Advanced settings with bilingual support</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+
+        <!-- Advanced Settings -->
+        <div class="screen-card" onclick="openModal('advanced_settings/code.html', 'Advanced Settings')">
+          <div class="card-header">
+            <div class="card-dots">
+              <div class="card-dot dot-red"></div>
+              <div class="card-dot dot-yellow"></div>
+              <div class="card-dot dot-green"></div>
+            </div>
+            <div class="card-url">advanced_settings/code.html</div>
+          </div>
+          <div class="iframe-wrap">
+            <iframe src="advanced_settings/code.html" loading="lazy" scrolling="no" title="Advanced Settings"></iframe>
+            <div class="preview-overlay">
+              <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-title">
+              الإعدادات — Advanced Settings
+              <a href="advanced_settings/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
+                <span class="material-symbols-outlined">open_in_new</span>Open
+              </a>
+            </div>
+            <div class="card-meta">
+              <div class="status-dot"></div>
+              <span class="status-label">Valid HTML</span>
+              <span class="card-tag tag-both">Bilingual</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DESIGN SYSTEM -->
+    <div id="design" style="margin-bottom:2rem; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div>
+          <div class="section-tag"><span class="material-symbols-outlined"
+              style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">palette</span>
+            Design</div>
+          <h2 class="section-title">نظام التصميم</h2>
+          <p class="section-desc">Horizon Flux — The design language powering every screen</p>
+        </div>
+      </div>
+      <div class="screens-grid">
+        <div class="design-system-card">
+          <div class="ds-icon">
+            <span class="material-symbols-outlined">style</span>
+          </div>
+          <div class="ds-title">Horizon Flux Design System</div>
+          <p class="ds-desc">
+            نظام تصميم متكامل يحكم كل شاشة في التطبيق. يعتمد على Material Design 3 tokens مع أسلوب تحريري راقٍ. يحدد
+            قواعد الألوان، الطباعة، الظل، وطريقة التعامل مع اللغتين العربية والإنجليزية.
+          </p>
+          <div class="ds-pills">
+            <span class="ds-pill">Material Design 3</span>
+            <span class="ds-pill">Tonal Surfaces</span>
+            <span class="ds-pill">No-Line Rule</span>
+            <span class="ds-pill">Glassmorphism</span>
+            <span class="ds-pill">Bilingual Typography</span>
+            <span class="ds-pill">Bento Grid</span>
+          </div>
+          <div class="color-swatches" style="margin-top:1.5rem;">
+            <div class="swatch" style="background:#00488d;" title="Primary"></div>
+            <div class="swatch" style="background:#005fb8;" title="Primary Container"></div>
+            <div class="swatch" style="background:#d6e3ff;" title="Primary Fixed"></div>
+            <div class="swatch" style="background:#944a00;" title="Secondary"></div>
+            <div class="swatch" style="background:#fc8f34;" title="Secondary Container"></div>
+            <div class="swatch" style="background:#ffdcc5;" title="Secondary Fixed"></div>
+            <div class="swatch" style="background:#005429;" title="Tertiary"></div>
+            <div class="swatch" style="background:#006f38;" title="Tertiary Container"></div>
+            <div class="swatch" style="background:#7efba4;" title="Tertiary Fixed"></div>
+            <div class="swatch" style="background:#f8f9fa;" title="Surface"></div>
+            <div class="swatch" style="background:#edeeef;" title="Surface Container"></div>
+            <div class="swatch" style="background:#191c1d;" title="On Surface"></div>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <a href="horizon_flux/DESIGN.md" target="_blank"
+              style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); padding:10px 20px; border-radius:999px; color:#fff; font-weight:700; font-size:13px; text-decoration:none; transition:background 0.2s;"
+              onmouseover="this.style.background='rgba(255,255,255,0.22)'"
+              onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+              <span class="material-symbols-outlined"
+                style="font-size:16px; font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">description</span>
+              View DESIGN.md
             </a>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="card-title">
-            Splash Screen
-            <a href="splash_screen/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-en">English</span>
-            <span class="card-tag tag-design">Splash</span>
-          </div>
-        </div>
       </div>
+    </div>
+
+  </div><!-- /main-wrap -->
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Sanctuary App — Design Preview Gallery &nbsp;·&nbsp; 12 HTML screens &nbsp;·&nbsp; Material Design 3
+      &nbsp;·&nbsp; Bilingual (AR + EN)</p>
+  </footer>
+
+  <!-- FULLSCREEN MODAL -->
+  <div class="modal" id="previewModal" onclick="closeModal(event)">
+    <div class="modal-inner" id="modalInner">
+      <button class="modal-close" onclick="closeModal()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <iframe id="modalIframe" src="" loading="lazy" title="Screen Preview"></iframe>
+      <div class="modal-label" id="modalLabel"></div>
     </div>
   </div>
 
-  <!-- DASHBOARD -->
-  <div id="dashboard" style="margin-bottom:4rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">dashboard</span> Dashboard</div>
-        <h2 class="section-title">لوحة التحكم</h2>
-        <p class="section-desc">2 variants — Bento Grid with Voice, Arabic RTL Dashboard</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-
-
-      <!-- Sanctuary Dashboard AR -->
-      <div class="screen-card" onclick="openModal('sanctuary_dashboard/code.html', 'Sanctuary Dashboard (Arabic)')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">sanctuary_dashboard/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="sanctuary_dashboard/code.html" loading="lazy" scrolling="no" title="Sanctuary Dashboard"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            لوحة Sanctuary (عربي)
-            <a href="sanctuary_dashboard/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-ar">عربي RTL</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- TASKS -->
-  <div id="tasks" style="margin-bottom:4rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">task</span> Tasks</div>
-        <h2 class="section-title">تفاصيل المهام</h2>
-        <p class="section-desc">1 screen — Full-featured: subtasks, budget & voice note</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-
-      <!-- Task Details with Budget -->
-      <div class="screen-card" onclick="openModal('task_details_with_budget/code.html', 'Task Details + Budget')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">task_details_with_budget/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="task_details_with_budget/code.html" loading="lazy" scrolling="no" title="Task Details with Budget"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            Task Details + Budget
-            <a href="task_details_with_budget/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-both">Bilingual</span>
-            <span class="card-tag tag-design">💰 Budget</span>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-
-  <!-- FINANCE -->
-  <div id="finance" style="margin-bottom:4rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">payments</span> Finance</div>
-        <h2 class="section-title">الشؤون المالية</h2>
-        <p class="section-desc">Budgets tracking & Financial reports</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-
-      <!-- Budgets -->
-      <div class="screen-card" onclick="openModal('budgets/code.html', 'Budgets (الميزانيات)')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">budgets/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="budgets/code.html" loading="lazy" scrolling="no" title="Budgets"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            الميزانيات — Budgets
-            <a href="budgets/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-ar">عربي RTL</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Financial Reports -->
-      <div class="screen-card" onclick="openModal('financial_reports/code.html', 'Financial Reports (التقارير المالية)')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">financial_reports/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="financial_reports/code.html" loading="lazy" scrolling="no" title="Financial Reports"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            التقارير المالية
-            <a href="financial_reports/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-ar">عربي RTL</span>
-            <span class="card-tag tag-design">📊 Charts</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- CALENDAR -->
-  <div id="calendar" style="margin-bottom:4rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">calendar_month</span> Calendar</div>
-        <h2 class="section-title">التقويم والتنبيهات</h2>
-        <p class="section-desc">Calendar with deadline alerts & timeline view</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-
-      <!-- Calendar -->
-      <div class="screen-card" onclick="openModal('calendar_with_deadline_alerts/code.html', 'Calendar with Deadline Alerts')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">calendar_with_deadline_alerts/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="calendar_with_deadline_alerts/code.html" loading="lazy" scrolling="no" title="Calendar"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            Calendar + Deadline Alerts
-            <a href="calendar_with_deadline_alerts/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-both">Bilingual</span>
-            <span class="card-tag tag-design">⚡ Alerts</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phone Notifications -->
-      <div class="screen-card" onclick="openModal('phone_notifications/code.html', 'Phone Lock Screen Notifications')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">phone_notifications/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="phone_notifications/code.html" loading="lazy" scrolling="no" title="Phone Notifications"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            Phone Lock Screen Notifications
-            <a href="phone_notifications/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-both">Bilingual</span>
-            <span class="card-tag tag-design">🔔 Lock Screen</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SYSTEM -->
-  <div id="system" style="margin-bottom:4rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">settings</span> System</div>
-        <h2 class="section-title">الإعدادات</h2>
-        <p class="section-desc">Advanced settings with bilingual support</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-
-      <!-- Advanced Settings -->
-      <div class="screen-card" onclick="openModal('advanced_settings/code.html', 'Advanced Settings')">
-        <div class="card-header">
-          <div class="card-dots">
-            <div class="card-dot dot-red"></div>
-            <div class="card-dot dot-yellow"></div>
-            <div class="card-dot dot-green"></div>
-          </div>
-          <div class="card-url">advanced_settings/code.html</div>
-        </div>
-        <div class="iframe-wrap">
-          <iframe src="advanced_settings/code.html" loading="lazy" scrolling="no" title="Advanced Settings"></iframe>
-          <div class="preview-overlay">
-            <a class="preview-btn"><span class="material-symbols-outlined">open_in_full</span>Full Preview</a>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="card-title">
-            الإعدادات — Advanced Settings
-            <a href="advanced_settings/code.html" target="_blank" class="open-link" onclick="event.stopPropagation()">
-              <span class="material-symbols-outlined">open_in_new</span>Open
-            </a>
-          </div>
-          <div class="card-meta">
-            <div class="status-dot"></div>
-            <span class="status-label">Valid HTML</span>
-            <span class="card-tag tag-both">Bilingual</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- DESIGN SYSTEM -->
-  <div id="design" style="margin-bottom:2rem; scroll-margin-top: 80px;">
-    <div class="section-header">
-      <div>
-        <div class="section-tag"><span class="material-symbols-outlined" style="font-size:13px; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">palette</span> Design</div>
-        <h2 class="section-title">نظام التصميم</h2>
-        <p class="section-desc">Horizon Flux — The design language powering every screen</p>
-      </div>
-    </div>
-    <div class="screens-grid">
-      <div class="design-system-card">
-        <div class="ds-icon">
-          <span class="material-symbols-outlined">style</span>
-        </div>
-        <div class="ds-title">Horizon Flux Design System</div>
-        <p class="ds-desc">
-          نظام تصميم متكامل يحكم كل شاشة في التطبيق. يعتمد على Material Design 3 tokens مع أسلوب تحريري راقٍ. يحدد قواعد الألوان، الطباعة، الظل، وطريقة التعامل مع اللغتين العربية والإنجليزية.
-        </p>
-        <div class="ds-pills">
-          <span class="ds-pill">Material Design 3</span>
-          <span class="ds-pill">Tonal Surfaces</span>
-          <span class="ds-pill">No-Line Rule</span>
-          <span class="ds-pill">Glassmorphism</span>
-          <span class="ds-pill">Bilingual Typography</span>
-          <span class="ds-pill">Bento Grid</span>
-        </div>
-        <div class="color-swatches" style="margin-top:1.5rem;">
-          <div class="swatch" style="background:#00488d;" title="Primary"></div>
-          <div class="swatch" style="background:#005fb8;" title="Primary Container"></div>
-          <div class="swatch" style="background:#d6e3ff;" title="Primary Fixed"></div>
-          <div class="swatch" style="background:#944a00;" title="Secondary"></div>
-          <div class="swatch" style="background:#fc8f34;" title="Secondary Container"></div>
-          <div class="swatch" style="background:#ffdcc5;" title="Secondary Fixed"></div>
-          <div class="swatch" style="background:#005429;" title="Tertiary"></div>
-          <div class="swatch" style="background:#006f38;" title="Tertiary Container"></div>
-          <div class="swatch" style="background:#7efba4;" title="Tertiary Fixed"></div>
-          <div class="swatch" style="background:#f8f9fa;" title="Surface"></div>
-          <div class="swatch" style="background:#edeeef;" title="Surface Container"></div>
-          <div class="swatch" style="background:#191c1d;" title="On Surface"></div>
-        </div>
-        <div style="margin-top:1.5rem;">
-          <a href="horizon_flux/DESIGN.md" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); padding:10px 20px; border-radius:999px; color:#fff; font-weight:700; font-size:13px; text-decoration:none; transition:background 0.2s;"
-            onmouseover="this.style.background='rgba(255,255,255,0.22)'"
-            onmouseout="this.style.background='rgba(255,255,255,0.15)'">
-            <span class="material-symbols-outlined" style="font-size:16px; font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">description</span>
-            View DESIGN.md
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /main-wrap -->
-
-<!-- FOOTER -->
-<footer>
-  <p>Sanctuary App — Design Preview Gallery &nbsp;·&nbsp; 12 HTML screens &nbsp;·&nbsp; Material Design 3 &nbsp;·&nbsp; Bilingual (AR + EN)</p>
-</footer>
-
-<!-- FULLSCREEN MODAL -->
-<div class="modal" id="previewModal" onclick="closeModal(event)">
-  <div class="modal-inner" id="modalInner">
-    <button class="modal-close" onclick="closeModal()">
-      <span class="material-symbols-outlined">close</span>
-    </button>
-    <iframe id="modalIframe" src="" loading="lazy" title="Screen Preview"></iframe>
-    <div class="modal-label" id="modalLabel"></div>
-  </div>
-</div>
-
-<script>
-  // PWA Service Worker Registration
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('SW Registered', reg))
-        .catch(err => console.log('SW Error', err));
-    });
-  }
-
-  function openModal(src, label) {
-    const modal = document.getElementById('previewModal');
-    document.getElementById('modalIframe').src = src;
-    document.getElementById('modalLabel').textContent = label;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(e) {
-    if (e && e.target !== document.getElementById('previewModal') && !e.target.closest('.modal-close')) return;
-    const modal = document.getElementById('previewModal');
-    modal.classList.remove('open');
-    document.getElementById('modalIframe').src = '';
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  // Nav active state on scroll
-  const sections = document.querySelectorAll('[id]');
-  const navLinks = document.querySelectorAll('.nav-tab');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.nav-tab[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { threshold: 0.3 });
-  sections.forEach(s => observer.observe(s));
-
-  // Smooth iframe scaling
-  document.querySelectorAll('.iframe-wrap iframe').forEach(iframe => {
-    iframe.style.width = '375px';
-    iframe.style.height = '884px';
-    function updateScale() {
-      const wrap = iframe.parentElement;
-      const scale = wrap.clientWidth / 375;
-      iframe.style.transform = `scale(${scale})`;
-      iframe.style.transformOrigin = 'top left';
-      wrap.style.height = Math.ceil(884 * scale) + 'px';
+  <script>
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW Registered', reg))
+          .catch(err => console.log('SW Error', err));
+      });
     }
-    updateScale();
-    window.addEventListener('resize', updateScale);
-  });
-</script>
+
+    function openModal(src, label) {
+      const modal = document.getElementById('previewModal');
+      document.getElementById('modalIframe').src = src;
+      document.getElementById('modalLabel').textContent = label;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('previewModal') && !e.target.closest('.modal-close')) return;
+      const modal = document.getElementById('previewModal');
+      modal.classList.remove('open');
+      document.getElementById('modalIframe').src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Nav active state on scroll
+    const sections = document.querySelectorAll('[id]');
+    const navLinks = document.querySelectorAll('.nav-tab');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-tab[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+
+    // Smooth iframe scaling
+    document.querySelectorAll('.iframe-wrap iframe').forEach(iframe => {
+      iframe.style.width = '375px';
+      iframe.style.height = '884px';
+      function updateScale() {
+        const wrap = iframe.parentElement;
+        const scale = wrap.clientWidth / 375;
+        iframe.style.transform = `scale(${scale})`;
+        iframe.style.transformOrigin = 'top left';
+        wrap.style.height = Math.ceil(884 * scale) + 'px';
+      }
+      updateScale();
+      window.addEventListener('resize', updateScale);
+    });
+  </script>
 </body>
+
 </html>
